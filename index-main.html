@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Suryoday Engineers & Control Systems — industrial electrical, automation, commissioning and technical services across Maharashtra.">
+  <meta name="theme-color" content="#07110d">
+  <title>Suryoday Engineers & Control Systems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #07110d;
+      --ink-2: #0d1a14;
+      --surface: #f2efe7;
+      --paper: #faf8f2;
+      --orange: #f36b21;
+      --orange-2: #ff9c2a;
+      --green: #1d6b45;
+      --green-2: #43a06c;
+      --line: rgba(22, 49, 37, .16);
+      --muted: #68746e;
+      --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+      --body: "Manrope", Arial, sans-serif;
+      --mono: "DM Mono", monospace;
+      --radius: 4px;
+      --shadow: 0 22px 60px rgba(3, 17, 11, .13);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { margin: 0; color: var(--ink); background: var(--surface); font-family: var(--body); line-height: 1.6; overflow-x: hidden; }
+    body::before { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none; opacity: .32; background-image: linear-gradient(rgba(21,90,55,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(21,90,55,.08) 1px, transparent 1px); background-size: 48px 48px; }
+    ::selection { background: var(--orange); color: #fff; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    img, svg { display: block; max-width: 100%; }
+
+    .container { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    .eyebrow { margin: 0 0 14px; color: var(--green); font: 500 .72rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: .14em; }
+    .eyebrow::before { content: "//"; margin-right: 8px; color: var(--orange); }
+    .section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 440px); gap: 40px; align-items: end; margin-bottom: 48px; }
+    .section-title { max-width: 820px; margin: 0; font: 700 clamp(2.7rem, 6vw, 5.4rem)/.9 var(--display); letter-spacing: -.025em; text-transform: uppercase; }
+    .section-title span { color: var(--orange); }
+    .section-lead { margin: 0; color: var(--muted); font-size: .98rem; }
+
+    .site-header { position: fixed; inset: 0 0 auto; z-index: 100; border-bottom: 1px solid rgba(255,255,255,.1); transition: background .3s, box-shadow .3s, transform .3s; }
+    .site-header.scrolled { background: rgba(7,17,13,.92); box-shadow: 0 12px 30px rgba(0,0,0,.16); backdrop-filter: blur(14px); }
+    .nav { height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .logo { display: inline-flex; align-items: center; gap: 12px; color: #fff; }
+    .logo-mark { width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.26); border-radius: 50%; display: grid; place-items: center; overflow: hidden; }
+    .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
+    .logo-copy strong { display: block; font: 700 1.18rem/1 var(--display); letter-spacing: .06em; text-transform: uppercase; }
+    .logo-copy small { display: block; margin-top: 4px; color: rgba(255,255,255,.64); font: .54rem/1 var(--mono); letter-spacing: .13em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 26px; color: rgba(255,255,255,.78); font: 500 .68rem var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+    .nav-links a { position: relative; padding: 10px 0; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 4px; height: 1px; background: var(--orange); transition: right .25s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { right: 0; }
+    .nav-call { padding: 10px 15px !important; border: 1px solid rgba(255,255,255,.22); }
+    .nav-call::after { display: none; }
+    .nav-call:hover { border-color: var(--orange); background: var(--orange); }
+    .menu-toggle { display: none; width: 42px; height: 42px; padding: 0; border: 1px solid rgba(255,255,255,.25); background: transparent; cursor: pointer; }
+    .menu-toggle span, .menu-toggle::before, .menu-toggle::after { content: ""; display: block; width: 18px; height: 1px; margin: 5px auto; background: #fff; transition: .25s; }
+
+    .hero { min-height: 100svh; position: relative; display: flex; align-items: center; color: #fff; isolation: isolate; background: radial-gradient(circle at 74% 68%, rgba(243,107,33,.2), transparent 29%), linear-gradient(120deg, #07110d 0%, #0c2016 60%, #153925 100%); overflow: hidden; }
+    .hero::before { content: ""; position: absolute; inset: 0; z-index: -2; opacity: .3; background-image: linear-gradient(rgba(119,213,153,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(119,213,153,.14) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(to right, #000, transparent 70%); }
+    .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 80px; background: linear-gradient(to bottom, transparent, rgba(0,0,0,.22)); pointer-events: none; }
+    .hero-inner { padding: 150px 0 106px; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 50px; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 24px; color: #ffc079; font: 500 .7rem var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+    .hero-tag::before { content: ""; width: 34px; height: 1px; background: var(--orange); }
+    .hero h1 { max-width: 720px; margin: 0; font: 700 clamp(4.2rem, 9.2vw, 8.8rem)/.77 var(--display); letter-spacing: -.035em; text-transform: uppercase; text-wrap: balance; }
+    .hero h1 .outline { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.72); }
+    .hero-tagline { margin: 28px 0 12px; color: #fff; font: 600 clamp(1.1rem, 2vw, 1.45rem) var(--display); letter-spacing: .07em; text-transform: uppercase; }
+    .hero-intro { max-width: 610px; margin: 0 0 32px; color: rgba(255,255,255,.68); font-size: .97rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn { min-height: 50px; padding: 13px 22px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; border: 1px solid transparent; font: 500 .68rem var(--mono); letter-spacing: .08em; text-transform: uppercase; transition: transform .25s, background .25s, border-color .25s, color .25s, box-shadow .25s; }
+    .btn svg { width: 16px; transition: transform .25s; }
+    .btn:hover { transform: translateY(-3px); }
+    .btn:hover svg { transform: translateX(4px); }
+    .btn-primary { color: #fff; background: var(--orange); box-shadow: 0 12px 30px rgba(243,107,33,.18); }
+    .btn-primary:hover { background: #ff7e35; box-shadow: 0 16px 38px rgba(243,107,33,.3); }
+    .btn-ghost { color: #fff; border-color: rgba(255,255,255,.3); }
+    .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+
+    .sunrise { position: relative; min-height: 520px; display: grid; place-items: center; }
+    
+    .official-logo { 
+      width: min(39vw, 470px); 
+      aspect-ratio: 1; 
+      position: relative; 
+      border-radius: 50%; 
+      overflow: hidden; 
+      background: #fff; 
+      box-shadow: 0 0 0 1px rgba(255,177,76,.28), 0 24px 80px rgba(243,107,33,.2); 
+    }
+    
+    .official-logo::after { 
+      content: ""; 
+      position: absolute; 
+      inset: 4%; 
+      z-index: 4; 
+      border: 1px solid rgba(243,107,33,.2); 
+      border-radius: 50%; 
+      pointer-events: none; 
+    }
+
+    .logo-layer { 
+      position: absolute; 
+      inset: 0;
+      margin: auto;
+      object-fit: contain; 
+    }
+
+    .logo-bg { width: 100%; height: 100%; z-index: 1; }
+    .logo-rays { width: 64%; height: 64%; z-index: 2; animation: sun-spin 18s linear infinite; }
+    .logo-center { width: 24%; height: 24%; z-index: 3; }
+
+    .hero-stamp { position: absolute; right: 0; bottom: 2%; display: flex; gap: 9px; align-items: center; color: rgba(255,255,255,.5); font: .62rem var(--mono); text-transform: uppercase; letter-spacing: .1em; }
+    .hero-stamp b { color: var(--orange-2); font-weight: 500; }
+    
+   @keyframes sun-spin { 
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .stats { position: relative; z-index: 2; margin-top: -48px; }
+    .stats-inner { display: grid; grid-template-columns: repeat(3,1fr); color: #fff; background: var(--green); box-shadow: var(--shadow); }
+    .stat { min-height: 104px; padding: 24px 30px; display: flex; align-items: center; gap: 17px; border-right: 1px solid rgba(255,255,255,.14); }
+    .stat:last-child { border: 0; }
+    .stat strong { font: 700 2.4rem/1 var(--display); color: #fff; }
+    .stat span { color: rgba(255,255,255,.66); font: .62rem/1.45 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+
+    section { padding: 120px 0; }
+    .services { padding-top: 150px; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .service-card { min-height: 280px; position: relative; padding: 30px; background: rgba(250,248,242,.58); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; transition: color .35s, background .35s, transform .35s, box-shadow .35s; }
+    .service-card::after { content: ""; position: absolute; inset: auto 0 0; height: 3px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform .35s; }
+    .service-card:hover { z-index: 2; color: #fff; background: var(--green); transform: translateY(-6px); box-shadow: 0 20px 45px rgba(22,77,49,.18); }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-card:hover p, .service-card:hover .service-no { color: rgba(255,255,255,.67); }
+    .service-card:hover .service-icon { color: #ffc47e; border-color: rgba(255,255,255,.18); transform: rotate(-4deg) scale(1.04); }
+    .service-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .service-no { color: var(--muted); font: .62rem var(--mono); transition: color .35s; }
+    .service-icon { width: 48px; height: 48px; padding: 11px; color: var(--green); border: 1px solid var(--line); transition: .35s; }
+    .service-card h3 { max-width: 230px; margin: 42px 0 12px; font: 600 1.65rem/1.02 var(--display); text-transform: uppercase; letter-spacing: .01em; }
+    .service-card p { max-width: 290px; margin: 0; color: var(--muted); font-size: .82rem; transition: color .35s; }
+
+    .brands { color: #fff; background: var(--ink); position: relative; overflow: hidden; }
+    .brands::before { content: "AUTHORIZED"; position: absolute; right: -28px; top: 36px; color: rgba(255,255,255,.025); font: 800 12rem/.8 var(--display); letter-spacing: .03em; }
+    .brands .eyebrow { color: #7ac796; }
+    .brands .section-lead { color: rgba(255,255,255,.55); }
+    .brand-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; position: relative; }
+    .brand-card { min-height: 290px; padding: 26px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.025); transition: transform .3s, border-color .3s, background .3s; }
+    .brand-card:hover { transform: translateY(-7px); border-color: rgba(243,107,33,.65); background: rgba(243,107,33,.07); }
+    .brand-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+    .brand-logo-wrap { width: 64px; height: 64px; background: #fff; padding: 6px; border-radius: var(--radius); display: grid; place-items: center; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+    .brand-logo-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .brand-card small { color: rgba(255,255,255,.4); font: .58rem var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .brand-name { font: 700 2rem/.95 var(--display); letter-spacing: .02em; text-transform: uppercase; margin-top: 4px; }
+    .brand-card p { margin: 10px 0 0; color: rgba(255,255,255,.5); font-size: .74rem; }
+    .brand-seal { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; color: var(--orange-2); font: .58rem var(--mono); }
+
+    .projects { background: var(--paper); }
+    .project-grid { display: grid; grid-template-columns: 1.25fr .75fr; grid-template-rows: repeat(2, 310px); gap: 14px; }
+    .project-card { min-height: 290px; position: relative; color: #fff; background: #123322; overflow: hidden; isolation: isolate; }
+    .project-card:first-child { grid-row: 1 / 3; }
+    .project-visual { position: absolute; inset: 0; z-index: -2; transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .7s; }
+    .project-card:hover .project-visual { transform: scale(1.05); filter: saturate(1.25); }
+    .project-card::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(0,0,0,.02) 20%, rgba(3,15,10,.88) 100%); }
+    .project-info { position: absolute; inset: auto 0 0; padding: 28px; transform: translateY(14px); transition: transform .35s; }
+    .project-card:hover .project-info { transform: translateY(0); }
+    .project-info small { color: #ffbd73; font: .58rem var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .project-info h3 { margin: 7px 0 3px; font: 600 2rem/1 var(--display); text-transform: uppercase; }
+    .project-info p { max-width: 480px; margin: 7px 0 0; color: rgba(255,255,255,.63); font-size: .75rem; opacity: 0; transform: translateY(8px); transition: .35s; }
+    .project-card:hover .project-info p { opacity: 1; transform: translateY(0); }
+    .project-num { position: absolute; top: 22px; right: 22px; font: .62rem var(--mono); color: rgba(255,255,255,.55); }
+    .project-more { grid-column: 1 / -1; padding-top: 16px; display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .mini-project { padding: 21px 22px; display: flex; align-items: center; gap: 15px; border: 1px solid var(--line); background: var(--surface); transition: border-color .25s, transform .25s, background .25s; }
+    .mini-project:hover { transform: translateX(5px); border-color: var(--orange); background: #fff; }
+    .mini-project b { width: 34px; height: 34px; display: grid; place-items: center; flex: 0 0 auto; color: var(--orange); border: 1px solid rgba(243,107,33,.25); font: .6rem var(--mono); }
+    .mini-project span { font: 600 1.03rem var(--display); text-transform: uppercase; letter-spacing: .03em; }
+
+    .locations { position: relative; overflow: hidden; }
+    .locations-layout { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+    .map-wrap { min-height: 500px; position: relative; display: grid; place-items: center; background: var(--ink-2); overflow: hidden; box-shadow: var(--shadow); }
+    .map-wrap::before { content: ""; position: absolute; inset: 0; opacity: .2; background-image: linear-gradient(rgba(104,201,139,.2) 1px, transparent 1px), linear-gradient(90deg, rgba(104,201,139,.2) 1px, transparent 1px); background-size: 28px 28px; }
+    .map-wrap svg { width: 78%; position: relative; color: #285d40; filter: drop-shadow(0 20px 30px rgba(0,0,0,.2)); }
+    .location-list { display: grid; gap: 10px; }
+    .location-card { padding: 21px 22px; display: grid; grid-template-columns: 46px 1fr auto; align-items: center; gap: 18px; border: 1px solid var(--line); background: rgba(250,248,242,.52); transition: transform .3s, border-color .3s, background .3s; }
+    .location-card:hover { transform: translateX(7px); border-color: var(--green); background: #fff; }
+    .location-card.hq { color: #fff; border-color: var(--green); background: var(--green); }
+    .loc-index { width: 42px; height: 42px; display: grid; place-items: center; color: var(--green); border: 1px solid var(--line); font: .58rem var(--mono); }
+    .hq .loc-index { color: #fff; border-color: rgba(255,255,255,.2); }
+    .location-card h3 { margin: 0; font: 600 1.45rem/1 var(--display); text-transform: uppercase; }
+    .location-card p { margin: 5px 0 0; color: var(--muted); font-size: .72rem; }
+    .hq p { color: rgba(255,255,255,.62); }
+    .loc-tag { color: var(--orange); font: .58rem var(--mono); text-transform: uppercase; letter-spacing: .1em; }
+    .hq .loc-tag { color: #ffc07a; }
+    
+    .contact { padding: 0; color: #fff; background: var(--ink); }
+    .contact-inner { padding: 100px 0; display: grid; grid-template-columns: .95fr 1.05fr; gap: 80px; align-items: start; }
+    .contact-inner .eyebrow { color: #7ac796; }
+    .contact h2 { max-width: 540px; margin: 0; font: 700 clamp(3.2rem,7vw,6.5rem)/.84 var(--display); letter-spacing: -.02em; text-transform: uppercase; }
+    .contact h2 span { color: var(--orange); }
+    .contact-details { border-top: 1px solid rgba(255,255,255,.14); }
+    .contact-row { padding: 25px 0; display: grid; grid-template-columns: 110px 1fr 28px; gap: 18px; align-items: center; border-bottom: 1px solid rgba(255,255,255,.14); transition: padding-left .25s, background .25s; }
+    .contact-row:hover { padding-left: 12px; background: rgba(255,255,255,.025); }
+    .contact-row small { color: rgba(255,255,255,.38); font: .58rem var(--mono); letter-spacing: .10em; text-transform: uppercase; }
+    .contact-row strong { font: 500 clamp(1rem,2vw,1.2rem) var(--body); }
+    .contact-row svg { width: 17px; color: var(--orange); }
+    .contact-note { margin-top: 18px; color: rgba(255,255,255,.36); font: .58rem/1.6 var(--mono); }
+
+    footer { color: #fff; background: #040b08; border-top: 1px solid rgba(255,255,255,.08); }
+    .footer-inner { min-height: 100px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .footer-inner p { margin: 0; color: rgba(255,255,255,.4); font: .6rem var(--mono); letter-spacing: .05em; }
+    .back-top { color: rgba(255,255,255,.6); font: .6rem var(--mono); text-transform: uppercase; letter-spacing: .08em; transition: color .2s; }
+    .back-top:hover { color: var(--orange-2); }
+
+    .whatsapp { width: 58px; height: 58px; position: fixed; right: 24px; bottom: 24px; z-index: 90; display: grid; place-items: center; color: #fff; background: #25d366; border-radius: 50%; box-shadow: 0 10px 35px rgba(8,75,35,.35); transition: transform .25s, box-shadow .25s; }
+    .whatsapp::before { content: ""; position: absolute; inset: -5px; border: 1px solid rgba(37,211,102,.45); border-radius: inherit; animation: wa-pulse 2.6s ease-out infinite; }
+    .whatsapp:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 16px 38px rgba(8,75,35,.45); }
+    .whatsapp svg { width: 27px; }
+    @keyframes wa-pulse { 0% { transform: scale(.92); opacity: .8; } 70%,100% { transform: scale(1.28); opacity: 0; } }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+    .reveal.from-left { transform: translateX(-30px); }
+    .reveal.from-right { transform: translateX(30px); }
+    .reveal.visible { opacity: 1; transform: translate(0); }
+    .delay-1 { transition-delay: .08s; } .delay-2 { transition-delay: .16s; } .delay-3 { transition-delay: .24s; }
+
+    /* Client Ticker Style Rules */
+    .clients { background: var(--paper); border-top: 1px solid var(--line); padding-bottom: 90px; overflow: hidden; }
+    .slider-wrapper { width: 100%; overflow: hidden; position: relative; padding: 14px 0; }
+    .slider-wrapper::before, .slider-wrapper::after { content: ""; height: 100%; position: absolute; width: 160px; z-index: 5; pointer-events: none; top: 0; }
+    .slider-wrapper::before { left: 0; background: linear-gradient(to right, var(--paper) 15%, transparent 100%); }
+    .slider-wrapper::after { right: 0; background: linear-gradient(to left, var(--paper) 15%, transparent 100%); }
+    .slider-track { display: flex; width: calc(260px * 20); animation: infiniteScroll 28s linear infinite; }
+    .slider-track:hover { animation-play-state: paused; }
+    .slide { width: 260px; height: 90px; display: grid; place-items: center; flex-shrink: 0; }
+    .slide span { font: 800 2.2rem var(--display); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; opacity: .35; transition: opacity .3s, color .3s, transform .3s; }
+    .slide:hover span { opacity: 1; color: var(--orange); transform: scale(1.05); }
+    @keyframes infiniteScroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-260px * 10)); } }
+
+    @media (max-width: 920px) {
+      .nav-links { position: fixed; inset: 76px 0 auto; padding: 24px 20px 30px; display: grid; gap: 5px; background: rgba(7,17,13,.98); border-top: 1px solid rgba(255,255,255,.1); transform: translateY(-130%); opacity: 0; transition: .3s; }
+      .nav-links.open { transform: translateY(0); opacity: 1; }
+      .nav-links a { padding: 13px 4px; border-bottom: 1px solid rgba(255,255,255,.08); }
+      .menu-toggle { display: block; }
+      .menu-toggle.active::before { transform: translateY(6px) rotate(45deg); }
+      .menu-toggle.active span { opacity: 0; }
+      .menu-toggle.active::after { transform: translateY(-6px) rotate(-45deg); }
+      .hero-inner { grid-template-columns: 1fr; }
+      .sunrise { position: absolute; width: 55%; right: -5%; bottom: 4%; opacity: .72; }
+      .official-logo { width: min(52vw, 430px); }
+      .hero-copy { position: relative; z-index: 2; }
+      .section-head { grid-template-columns: 1fr; gap: 22px; }
+      .services-grid { grid-template-columns: repeat(2,1fr); }
+      .brand-grid { grid-template-columns: repeat(2,1fr); }
+      .project-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 420px 290px; }
+      .project-card:first-child { grid-column: 1 / -1; grid-row: auto; }
+      .locations-layout, .contact-inner { grid-template-columns: 1fr; gap: 50px; }
+      .map-wrap { min-height: 400px; }
+      .slider-wrapper::before, .slider-wrapper::after { width: 80px; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(100% - 28px, 1160px); }
+      section { padding: 86px 0; }
+      .logo-copy strong { font-size: 1rem; }
+      .logo-copy small { display: none; }
+      .hero { min-height: 760px; }
+      .hero-inner { padding: 128px 0 100px; }
+      .hero h1 { font-size: clamp(3.7rem, 19vw, 6.2rem); }
+      .hero-intro { font-size: .88rem; }
+      .hero .actions { display: grid; grid-template-columns: 1fr; max-width: 270px; }
+      .hero .btn { width: 100%; }
+      .sunrise { width: 86%; right: -26%; bottom: -5%; }
+      .official-logo { width: 310px; }
+      .stats { margin-top: 0; }
+      .stats .container { width: 100%; }
+      .stats-inner { grid-template-columns: 1fr; }
+      .stat { min-height: 82px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.14); }
+      .stat strong { font-size: 2rem; }
+      .services { padding-top: 90px; }
+      .services-grid, .brand-grid { grid-template-columns: 1fr; }
+      .service-card { min-height: 245px; }
+      .project-grid { display: grid; grid-template-columns: 1fr; grid-template-rows: repeat(3, 320px); }
+      .project-card:first-child { grid-column: auto; }
+      .project-more { grid-template-columns: 1fr; }
+      .project-info p { opacity: 1; transform: none; }
+      .map-wrap { min-height: 350px; }
+      .location-card { grid-template-columns: 42px 1fr; }
+      .loc-tag { grid-column: 2; }
+      .contact-inner { padding: 82px 0; }
+      .contact-row { grid-template-columns: 82px 1fr 18px; gap: 10px; }
+      .contact-row strong { font-size: .9rem; overflow-wrap: anywhere; }
+      .footer-inner { min-height: 120px; flex-direction: column; align-items: flex-start; justify-content: center; }
+      .whatsapp { width: 54px; height: 54px; right: 16px; bottom: 16px; }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+      .slider-track { animation: none; flex-wrap: wrap; justify-content: center; width: 100%; }
+    }
+    .project-gallery { background: var(--surface); border-top: 1px solid var(--line); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+    .gallery-item { position: relative; aspect-ratio: 4 / 3; background: var(--ink-2); overflow: hidden; border: 1px solid var(--line); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+    .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(7, 17, 13, 0.85) 0%, transparent 60%); display: flex; align-items: flex-end; padding: 16px; opacity: 0; transition: opacity .3s ease; }
+    .gallery-overlay span { color: #fff; font: 500 .65rem var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    @media (min-width: 921px) {
+      .gallery-grid { grid-template-columns: repeat(5, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="nav container">
+      <a class="logo" href="#home" aria-label="Suryoday Engineers home">
+        <span class="logo-mark" aria-hidden="true"><img src="logo.jpg" alt=""></span>
+        <span class="logo-copy"><strong>Suryoday Engineers</strong><small>&amp; Control Systems</small></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#projects">Projects</a><a href="#brands">Brands</a><a class="nav-call" href="#contact">Contact</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-inner container">
+        <div class="hero-copy">
+          <div class="hero-tag">Industrial solutions · Maharashtra</div>
+          <h1>
+            Suryoday <br>
+            Engineers <span class="accent">&amp;</span> <br>
+            <span class="outline">Controls</span> Systems
+          </h1>
+          <p class="hero-tagline">Consultants. Engineers. Contractors.</p>
+          <p class="hero-intro">End-to-end electrical, automation and industrial technical services—from design and panel building to erection, commissioning and dependable field support.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#services">Explore capabilities <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></a>
+            <a class="btn btn-ghost" href="#contact">Contact us <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></a>
+          </div>
+        </div>
+        <div class="sunrise" aria-hidden="true">
+          <div class="official-logo">
+            <img class="logo-layer logo-bg" src="logo-back.png" alt="">
+            <img class="logo-layer logo-rays" src="sun-rays.png" alt="">
+            <img class="logo-layer logo-center" src="om-center.png" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="stats-inner container">
+        <div class="stat"><strong>09</strong><span>Technical<br>service lines</span></div>
+        <div class="stat"><strong>04</strong><span>Locations across<br>Maharashtra</span></div>
+        <div class="stat"><strong>04</strong><span>Authorised<br>brand partnerships</span></div>
+      </div>
+    </div>
+
+
+    <section class="projects" id="projects">
+      <div class="container">
+        <div class="section-head reveal"><div><p class="eyebrow">Selected capabilities</p><h2 class="section-title">Work that keeps plants <span>moving.</span></h2></div><p class="section-lead">A showcase of the engineered systems, site installations and plant-critical work our teams are equipped to deliver.</p></div>
+        <div class="project-grid">
+          <article class="project-card reveal from-left">
+            <div class="project-visual">
+              <img src="panel-build.png" alt="Industrial control panel internal wiring build" style="width:300%; height:100%; object-fit:cover;">
+            </div>
+            <span class="project-num">P—01</span>
+            <div class="project-info">
+              <small>Control systems</small>
+              <h3>PLC / VFD / MCC Panel Builds</h3>
+              <p>Workshop-built control and power panels engineered, wired, tested and prepared fore reliable site integration.</p>
+            </div>
+          </article>
+          <article class="project-card reveal from-right delay-1">
+            <div class="project-visual">
+              <img src="transformer.png" alt="Industrial transformer installation site" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+            <span class="project-num">P—02</span>
+            <div class="project-info">
+              <small>Power infrastructure</small>
+              <h3>Transformer Erection</h3>
+              <p>From placement and assembly to testing and energisation.</p>
+            </div>
+          </article>
+          <article class="project-card reveal from-right delay-2">
+            <div class="project-visual">
+              <img src="linework.png" alt="High tension line construction execution" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+            <span class="project-num">P—03</span>
+      
+    </section>
+
+    <section class="project-gallery" id="gallery">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Visual Portfolio</p>
+            <h2 class="section-title">Site <span>Gallery.</span></h2>
+          </div>
+          <p class="section-lead">A visual record of our latest field installations, panel wiring engineering, and commissioned industrial systems across Maharashtra.</p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item reveal">
+            <img src="project1.jpg" alt="Cable Tray and Cable Laying Work">
+            <div class="gallery-overlay"><span>01 // Cable Tray and Cable Laying Work</span></div>
+          </div>
+          <div class="gallery-item reveal delay-1">
+            <img src="project2.png" alt="Control panel internal wiring">
+            <div class="gallery-overlay"><span>02 // PLC Panel Build</span></div>
+          </div>
+          <div class="gallery-item reveal delay-2">
+            <img src="project3.png" alt="Transformer installation site">
+            <div class="gallery-overlay"><span>03 // Transformer Erection</span></div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="project4.png" alt="Automation system integration">
+            <div class="gallery-overlay"><span>04 // Plant Automation</span></div>
+          </div>
+          <div class="gallery-item reveal delay-1">
+            <img src="project5.png" alt="VFD control panel setup">
+            <div class="gallery-overlay"><span>05 // VFD System</span></div>
+          </div>
+          <div class="gallery-item reveal delay-2">
+            <img src="project6.png" alt="Switchgear testing">
+            <div class="gallery-overlay"><span>06 // VCB Switchgear</span></div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="project7.png" alt="APFC panel installation">
+            <div class="gallery-overlay"><span>07 // APFC Integration</span></div>
+          </div>
+          <div class="gallery-item reveal delay-1">
+            <img src="project8.png" alt="Industrial instrumentation setup">
+            <div class="gallery-overlay"><span>08 // Instrumentation</span></div>
+          </div>
+          <div class="gallery-item reveal delay-2">
+            <img src="project9.png" alt="Pneumatics repair job">
+            <div class="gallery-overlay"><span>09 // Pneumatic Systems</span></div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="project10.png" alt="LT line distribution work">
+            <div class="gallery-overlay"><span>10 // LT Distribution</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="clients" id="clients">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Enterprise Trust</p>
+            <h2 class="section-title">Major <span>Clients.</span></h2>
+          </div>
+          <p class="section-lead">Powering operations, precision control, and robust plant-scale infrastructure installations for leading industrial corporations.</p>
+        </div>
+      </div>
+      <div class="slider-wrapper">
+        <div class="slider-track">
+          <div class="slide"><span>Tata Power</span></div>
+          <div class="slide"><span>Mahindra</span></div>
+          <div class="slide"><span>Reliance</span></div>
+          <div class="slide"><span>Godrej Ind.</span></div>
+          <div class="slide"><span>Larsen & Toubro</span></div>
+          <div class="slide"><span>Adani Energy</span></div>
+          <div class="slide"><span>Siemens</span></div>
+          <div class="slide"><span>JSW Steel</span></div>
+          <div class="slide"><span>UltraTech</span></div>
+          <div class="slide"><span>BHEL</span></div>
+          <div class="slide"><span>Tata Power</span></div>
+          <div class="slide"><span>Mahindra</span></div>
+          <div class="slide"><span>Reliance</span></div>
+          <div class="slide"><span>Godrej Ind.</span></div>
+          <div class="slide"><span>Larsen & Toubro</span></div>
+          <div class="slide"><span>Adani Energy</span></div>
+          <div class="slide"><span>Siemens</span></div>
+          <div class="slide"><span>JSW Steel</span></div>
+          <div class="slide"><span>UltraTech</span></div>
+          <div class="slide"><span>BHEL</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="brands">
+  <div class="container">
+    
+    <div class="section-header">
+      <p class="eyebrow">Trusted names. Local support.</p>
+      <h2 class="section-title">Authorised <span>Partnerships</span></h2>
+    </div>
+
+    <div class="brand-grid">
+      
+      <div class="brand-card">
+        <span class="brand-number"></span>
+        <img src="subzero-logo.jpg" alt="Sub-Zero Logo">
+        <h3>Sub-Zero</h3>
+        <p>Industrial cooling solutions</p>
+      </div>
+
+      <div class="brand-card">
+        <span class="brand-number"></span>
+        <img src="jindals-logo.jpg" alt="Jindal's Logo">
+        <h3>Jindal's</h3>
+        <p>Engineered industrial products</p>
+      </div>
+
+      <div class="brand-card">
+        <span class="brand-number"></span>
+        <img src="d3solar-logo.png" alt="D3 Solar Logo">
+        <h3>D3 Solar</h3>
+        <p>Solar energy systems</p>
+      </div>
+
+      <div class="brand-card">
+        <span class="brand-number"></span>
+        <img src="nimjay-logo.png" alt="Nimjay Logo">
+        <h3>Nimjay</h3>
+        <p>Cooling tower solutions</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <section class="contact" id="contact">
+      <div class="contact-inner container">
+        <div class="reveal from-left"><p class="eyebrow">Contact</p><h2>Let's power the <span>next project.</span></h2></div>
+        <div class="contact-details reveal from-right">
+          <a class="contact-row" id="phoneLink" href="tel:+917972547551"><small>Phone</small><strong id="phoneText">+91 79725 47551 · +91 97669 30514</strong><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12m-4-4 4 4-4 4" stroke="currentColor"/></svg></a>
+          <a class="contact-row" id="emailLink" href="mailto:suryodaysystems@gmail.com"><small>Email</small><strong id="emailText">suryodaysystems@gmail.com · infosuryoday1@gmail.com</strong><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12m-4-4 4 4-4 4" stroke="currentColor"/></svg></a>
+          <div class="contact-row"><small>Address</small><strong id="addressText">Shop No. 5, Lakshmi Complex, Cotton Market Road, Sindhi Square, Amravati – 444606</strong><svg viewBox="0 0 20 20" fill="none"><path d="M10 18s6-5.3 6-10A6 6 0 104 8c0 4.7 6 10 6 10zM10 10.5A2.5 2.5 0 1010 5a2.5 2.5 0 000 5.5z" stroke="currentColor"/></svg></div>
+          <p class="contact-note">Serving clients from Amravati, Pune, Nagpur and Aurangabad.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="footer-inner container"><p>© <span id="year"></span> SURYODAY ENGINEERS &amp; CONTROL SYSTEMS · ALL RIGHTS RESERVED</p><a class="back-top" href="#home">Back to top ↑</a></div></footer>
+
+  <a class="whatsapp" id="whatsappLink" href="https://wa.me/917972547551" target="_blank" rel="noopener noreferrer" aria-label="Chat with Suryoday Engineers on WhatsApp">
+    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.05 3A12.9 12.9 0 005 22.56L3.2 29l6.58-1.72A12.96 12.96 0 1016.05 3zm0 23.58a10.7 10.7 0 01-5.46-1.5l-.39-.23-3.9 1.02 1.04-3.8-.25-.4A10.68 10.68 0 1126.73 16a10.7 10.7 0 01-10.68 10.58zm5.86-8c-.32-.16-1.9-.94-2.2-1.04-.29-.11-.5-.16-.71.16-.21.32-.82 1.04-1 1.25-.19.22-.37.24-.7.08-.31-.16-1.35-.5-2.57-1.59a9.63 9.63 0 01-1.78-2.21c-.18-.32-.02-.5.14-.65.14-.14.32-.37.48-.56.16-.18.21-.32.32-.53.1-.21.05-.4-.03-.56-.08-.16-.72-1.73-.98-2.37-.26-.62-.52-.54-.71-.55h-.61c-.22 0-.56.08-.85.4-.3.32-1.12 1.1-1.12 2.67s1.15 3.1 1.3 3.31c.17.22 2.26 3.45 5.47 4.84.76.33 1.36.52 1.82.67.77.24 1.46.21 2.01.13.62-.09 1.9-.78 2.17-1.53.27-.75.27-1.4.19-1.53-.08-.13-.3-.21-.62-.37z"/></svg>
+  </a>
+
+  <script>
+    const BUSINESS = {
+      phoneDisplay: "+91 79725 47551 · +91 97669 30514",
+      phoneInternational: "917972547551",
+      emailDisplay: "suryodaysystems@gmail.com · infosuryoday1@gmail.com",
+      email: "suryodaysystems@gmail.com",
+      address: "Shop No. 5, Lakshmi Complex, Cotton Market Road, Sindhi Square, Amravati – 444606"
+    };
+
+    const header = document.querySelector('.site-header');
+    const menu = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#navLinks');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.querySelector('#phoneText').textContent = BUSINESS.phoneDisplay;
+    document.querySelector('#phoneLink').href = `tel:+${BUSINESS.phoneInternational}`;
+    document.querySelector('#emailText').textContent = BUSINESS.emailDisplay;
+    document.querySelector('#emailLink').href = `mailto:${BUSINESS.email}`;
+    document.querySelector('#addressText').textContent = BUSINESS.address;
+    document.querySelector('#whatsappLink').href = `https://wa.me/${BUSINESS.phoneInternational}`;
+    document.querySelector('#year').textContent = new Date().getFullYear();
+
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 24);
+    onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+
+    menu.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menu.classList.toggle('active', open);
+      menu.setAttribute('aria-expanded', String(open));
+    });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open'); menu.classList.remove('active'); menu.setAttribute('aria-expanded', 'false');
+    }));
+
+    if (!reducedMotion && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+      }, { threshold: .12, rootMargin: '0px 0px -40px' });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+  </script>
+</body>
+</html>
